@@ -3,17 +3,25 @@ use yew::prelude::*;
 #[function_component]
 fn App() -> Html {
     let counter = use_state(|| 0);
-    let onclick = {
+    let increment = {
         let counter = counter.clone();
         move |_| {
             let value = *counter + 1;
             counter.set(value);
         }
     };
+    let decrement = {
+        let counter = counter.clone();
+        move |_| {
+            let value = *counter - 1;
+            counter.set(value);
+        }
+    };
 
     html! {
         <div>
-            <button {onclick}>{ "+1" }</button>
+            <button onclick={increment}>{ "+1" }</button>
+            <button onclick={decrement}>{ "-1" }</button>
             <p>{ *counter }</p>
         </div>
     }
